@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".FragmentFields"
+    android:orientation="vertical">
+
+    <Spinner
+        android:id="@+id/spinnerGroup"
+        style="@style/spinnerStyle"
+        />
+
+    <EditText
+        android:id="@+id/editTextInput"
+        style="@style/fieldsStyle"
+        android:inputType="numberDecimal"
+        android:hint="@string/input_number"
+        android:autofillHints="" />
+
+    <Spinner
+        android:id="@+id/spinnerInput"
+        style="@style/spinnerStyle"
+        />
+
+    <EditText
+        android:id="@+id/editTextOutput"
+        style="@style/fieldsStyle"
+        android:inputType="none"
+        android:hint="@string/converted_number"
+        android:autofillHints="" />
+
+    <Spinner
+        android:id="@+id/spinnerOutput"
+        style="@style/spinnerStyle"
+        />
+
+</LinearLayout>

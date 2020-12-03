@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="Groups">
+        <item>weight</item>
+        <item>distance</item>
+        <item>square</item>
+    </string-array>
+    
+    <string-array name="Weight">
+        <item>kg</item>
+        <item>lb</item>
+        <item>oz</item>
+    </string-array>
+
+    <string-array name="Weight2">
+        <item>lb</item>
+        <item>oz</item>
+        <item>kg</item>
+    </string-array>
+
+    <string-array name="Distance">
+        <item>km</item>
+        <item>mile</item>
+        <item>yard</item>
+    </string-array>
+
+    <string-array name="Distance2">
+        <item>mile</item>
+        <item>yard</item>
+        <item>km</item>
+    </string-array>
+
+    <string-array name="Square">
+        <item>m^2</item>
+        <item>km^2</item>
+        <item>ha</item>
+    </string-array>
+
+    <string-array name="Square2">
+        <item>km^2</item>
+        <item>ha</item>
+        <item>m^2</item>
+    </string-array>
+
+</resources>

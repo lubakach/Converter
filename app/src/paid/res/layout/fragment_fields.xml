@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Plum"
+    tools:context=".FragmentFields"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/swapButton"
+        style="@style/paidButtonStyle"
+        android:text="@string/swapButton"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerGroup"
+        style="@style/spinnerStyle"
+        />
+
+    <EditText
+        android:id="@+id/editTextInput"
+        style="@style/fieldsStyle"
+        android:inputType="numberDecimal"
+        android:hint="@string/input_number"
+        android:autofillHints="" />
+
+    <Spinner
+        android:id="@+id/spinnerInput"
+        style="@style/spinnerStyle"
+        />
+
+    <Button
+        android:id="@+id/copyInput"
+        style="@style/paidButtonStyle"
+        android:text="@string/copy"
+        />
+
+    <EditText
+        android:id="@+id/editTextOutput"
+        style="@style/fieldsStyle"
+        android:inputType="none"
+        android:hint="@string/converted_number"
+        android:autofillHints="" />
+
+    <Spinner
+        android:id="@+id/spinnerOutput"
+        style="@style/spinnerStyle"
+        />
+
+    <Button
+        android:id="@+id/copyOutput"
+        style="@style/paidButtonStyle"
+        android:text="@string/copy"
+        />
+
+</LinearLayout>

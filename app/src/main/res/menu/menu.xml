@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item android:id="@+id/menu_save"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/menuGroup1"
+        tools:ignore="MissingConstraints" />
+    <!-- menu group -->
+    <group android:id="@+id/group_delete"
+        tools:ignore="MissingConstraints">
+        <item android:id="@+id/menu_archive"
+            android:title="@string/menu2Item1" />
+        <item android:id="@+id/menu_delete"
+            android:title="@string/menu2Item2" />
+    </group>
+</menu>

@@ -1,0 +1,145 @@
+plugins {
+    id 'com.android.application'
+}
+
+
+def getVersionTag = { variant ->
+    def stdout
+    try {
+        stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine "git", "describe", "--match", "${variant}/*", "--long"
+            standardOutput = stdout
+        }
+        def longTag = stdout.toString().trim()
+
+        return longTag.substring(longTag.indexOf('/') + 1, longTag.indexOf('-'))
+    } catch (exception) {
+        return "6.6.6";
+    }
+}
+
+def getVersionCode = { tag ->
+    def parts = tag.tokenize('.')
+    if(parts.size() != 3 || parts[1].length() > 2 || parts[2].length() > 2) {
+        throw new RuntimeException("Invalid version tag \"${tag}\", format \"x.y.z\" expected.")
+    }
+    if(parts[1].length() == 1) {
+        parts[1] = "0" + parts[1]
+    }
+    if(parts[2].length() == 1) {
+        parts[2] = "0" + parts[2]
+    }
+    return Integer.parseInt(parts[0] + parts[1] + parts[2])
+}
+
+def getVersionName = { tag ->
+    return tag
+}
+
+//def keystorePropertiesFile = rootProject.file("keystore.properties")
+
+//def keystoreProperties = new Properties()
+
+//keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "30.0.2"
+/*
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }*/
+
+    signingConfigs {
+
+        release {
+            storeFile file('C:\\android\\AndroidStudioProjects\\Converter\\upload-keystore.jks')
+            storePassword '13066nata'
+            keyAlias 'key0'
+            keyPassword '13066nata13066mef'
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.example.converter"
+        minSdkVersion 16
+        targetSdkVersion 29
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions 'type'
+    productFlavors {
+        free {
+            applicationId "com.example.converter.free"
+            dimension 'type'
+        }
+        paid {
+            applicationId "com.example.converter.paid"
+            dimension 'type'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+/*
+        free {
+            applicationIdSuffix ".free"
+            signingConfig signingConfigs.debug
+        }
+
+        paid {
+            applicationIdSuffix ".paid"
+            signingConfig signingConfigs.debug
+        }*/
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def versionTag = getVersionTag(variant.buildType.name)
+            def myVersionCode = getVersionCode(versionTag)
+            def myVersionName = getVersionName(versionTag)
+
+            println variant.name + "[" + myVersionCode + ", " + myVersionName + "]"
+
+            output.versionNameOverride = myVersionName;
+            output.versionCodeOverride = myVersionCode;
+        }
+    }
+
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'org.jetbrains:annotations:15.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // дальше добавленное мной
+    implementation "androidx.gridlayout:gridlayout:1.0.0"
+    //noinspection GradleCompatible
+    implementation 'com.android.support:gridlayout-v7:28.0.0'
+
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha01'
+}
